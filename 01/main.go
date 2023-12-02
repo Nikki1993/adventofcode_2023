@@ -15,7 +15,7 @@ func main() {
 	re := regexp.MustCompile(`(\d)`)
 	words := map[string]string{"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"}
 
-	file, err := os.Open("./01/01.txt")
+	file, err := os.Open("input.txt")
 	if err != nil {
 		log.Fatalf("Error opening a file %v", err)
 	}
