@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bufio"
+	"adventofcode/utils"
 	"fmt"
 	"log"
 	"os"
@@ -15,20 +15,11 @@ func main() {
 	re := regexp.MustCompile(`(\d)`)
 	words := map[string]string{"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"}
 
-	file, err := os.Open("input.txt")
-	if err != nil {
-		log.Fatalf("Error opening a file %v", err)
-	}
+	fPath := utils.GetFile(os.Args)
+	f, fClose := utils.MustOpenFile(fPath)
+	defer fClose(f)
 
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			log.Fatalf("Error closing file %v", err)
-		}
-	}(file)
-
-	fScan := bufio.NewScanner(file)
-	fScan.Split(bufio.ScanLines)
+	fScan := utils.ScanAndSplit(f)
 	total := 0
 
 	for fScan.Scan() {
@@ -36,7 +27,7 @@ func main() {
 
 		// find all numbers
 		d := re.FindAllIndex([]byte(txt), -1)
-		for k, _ := range words {
+		for k := range words {
 			if !strings.Contains(txt, k) {
 				continue
 			}

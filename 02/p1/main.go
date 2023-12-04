@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bufio"
+	"adventofcode/utils"
 	"fmt"
 	"log"
 	"math"
@@ -21,31 +21,16 @@ type cubes struct {
 }
 
 func main() {
-	fPath := "input.txt"
-	if len(os.Args) > 1 {
-		fPath = os.Args[1]
-	}
-
+	fPath := utils.GetFile(os.Args)
+	f, fClose := utils.MustOpenFile(fPath)
+	defer fClose(f)
 	c := cubes{
 		red:   12,
 		green: 13,
 		blue:  14,
 	}
 
-	f, err := os.Open(fPath)
-	if err != nil {
-		log.Fatalf("Error opening a fPath %v", err)
-	}
-
-	defer func(f *os.File) {
-		err := f.Close()
-		if err != nil {
-			log.Printf("Error closing the fPath %v", err)
-		}
-	}(f)
-
-	fScan := bufio.NewScanner(f)
-	fScan.Split(bufio.ScanLines)
+	fScan := utils.ScanAndSplit(f)
 	total := 0
 
 	for fScan.Scan() {
