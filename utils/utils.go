@@ -8,8 +8,8 @@ import (
 	"os"
 )
 
-func GetFile(args []string) string {
-	fPath := "input.txt"
+func GetFilePath(args []string) string {
+	fPath := "example.txt"
 	if len(args) > 1 {
 		fPath = args[1]
 	}

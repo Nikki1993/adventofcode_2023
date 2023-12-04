@@ -10,7 +10,7 @@ import (
 func main() {
 	reS := regexp.MustCompile(`[^\w.\s]`)
 	reN := regexp.MustCompile(`\d+`)
-	fPath := utils.GetFile(os.Args)
+	fPath := utils.GetFilePath(os.Args)
 	f, fClose := utils.MustOpenFile(fPath)
 	defer fClose(f)
 

@@ -15,7 +15,7 @@ func main() {
 	re := regexp.MustCompile(`(\d)`)
 	words := map[string]string{"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"}
 
-	fPath := utils.GetFile(os.Args)
+	fPath := utils.GetFilePath(os.Args)
 	f, fClose := utils.MustOpenFile(fPath)
 	defer fClose(f)
 

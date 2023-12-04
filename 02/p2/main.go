@@ -16,7 +16,7 @@ type cubes struct {
 }
 
 func main() {
-	fPath := utils.GetFile(os.Args)
+	fPath := utils.GetFilePath(os.Args)
 	f, fClose := utils.MustOpenFile(fPath)
 	defer fClose(f)
 
