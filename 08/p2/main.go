@@ -88,6 +88,7 @@ func getSteps(pattern []int, k string, m map[string][2]string, ch chan<- int) {
 	ch <- steps
 }
 
+// study up on this shit. It's still going over my head
 func gcd(a, b int) int {
 	for b != 0 {
 		a, b = b, a%b
@@ -97,5 +98,6 @@ func gcd(a, b int) int {
 }
 
 func lcm(a, b int) int {
+	fmt.Println(a, b, gcd(a, b))
 	return a * b / gcd(a, b)
 }
